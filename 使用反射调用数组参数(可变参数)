@@ -1,0 +1,29 @@
+package com._520it._03_method;
+
+import java.lang.reflect.Method;
+import java.util.Arrays;
+
+class Employer{
+	public static void doWork(int...arr){
+		System.out.println("doWork方法被调用"+Arrays.toString(arr));
+	}
+	public static void doWork2(String...arr){
+		System.out.println("doWork方法被调用"+Arrays.toString(arr));
+	}
+}
+
+public class MethodIvokeDemo2 {
+	//使用反射调用数组参数(可变参数)
+	public static void main(String[] args) throws Exception {
+		Class clz = Employer.class;
+		//情况1、数组的元素类型是基本类型
+		Method m = clz.getMethod("doWork", int[].class);
+		m.invoke(null, new Object[]{new int[]{1,2,3,4,5,6}});
+		//情况2、数组的元素类型是引用类型
+		m = clz.getMethod("doWork2", String[].class);
+		//System.out.println(m);
+		m.invoke(null,  new Object[]{new String[]{"A","B","C"}});
+		
+		
+	}
+}
