@@ -1,0 +1,31 @@
+package com._520it._04_load_resourse;
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
+import java.util.Properties;
+
+//加载资源文件
+public class Load_resourse {
+	public static void main(String[] args) throws Exception {
+		//test1();
+		test();
+	}
+	//方式2	：使用相对路径方式加载
+	private static void test() throws Exception {
+		Properties p = new Properties();
+		ClassLoader loader = Thread.currentThread().getContextClassLoader();
+		InputStream in = loader.getResourceAsStream("db.properties");
+		p.load(in);
+		System.out.println(p);
+	}
+	//方式1：使用绝对路径加载
+	private static void test1() throws Exception {
+		Properties p = new Properties();
+		InputStream in = new FileInputStream("C:/Users/Administrator/Desktop/Eclipse代码/反射机制/resoursces/db.properties");
+		p.load(in);
+		System.out.println(p);
+		
+		
+	}
+}
